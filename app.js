@@ -12,20 +12,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // ✅ Configurar CORS antes de rutas
-const whitelist = ['http://localhost:3001', 'http://localhost:3002','https://mesa-compras.vercel.app'];
+const cors = require('cors');
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('No permitido por CORS'));
-    }
-  },
-  credentials: true,
+  origin: ['http://localhost:3001', 'http://localhost:3002', 'https://mesa-compras.vercel.app'],
+  credentials: true, // Necesario para enviar cookies / sesiones cruzadas
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Preflight permitido
+  allowedHeaders: ['Content-Type', 'Authorization'] // CORS seguro
 };
 
 app.use(cors(corsOptions));
+
 // Middleware
 app.use(bodyParser.json());
 
