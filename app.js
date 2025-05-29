@@ -39,6 +39,11 @@ app.get('/', (req, res) => {
   res.send('✅ Servidor funcionando');
 });
 
+// Ruta de prueba de conexión
+app.get('/ping', (req, res) => {
+  res.send('✅ Backend activo y base de datos conectada');
+});
+
 
 // Ruta para registrar usuario con contraseña encriptada
 app.post('/usuarios', async (req, res) => {
