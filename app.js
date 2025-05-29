@@ -12,8 +12,6 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // ✅ Configurar CORS antes de rutas
-const cors = require('cors');
-
 const corsOptions = {
   origin: ['http://localhost:3001', 'http://localhost:3002', 'https://mesa-compras.vercel.app'],
   credentials: true, // Necesario para enviar cookies / sesiones cruzadas
