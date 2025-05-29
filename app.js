@@ -9,10 +9,10 @@ const importarVilniusRoutes = require('./routers/importarVilnius');
 
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // ✅ Configurar CORS antes de rutas
-const whitelist = ['http://localhost:3001', 'http://localhost:3002'];
+const whitelist = ['http://localhost:3001', 'http://localhost:3002','https://mesa-compras.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {

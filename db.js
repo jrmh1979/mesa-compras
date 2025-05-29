@@ -1,14 +1,10 @@
-require('dotenv').config();
-const mysql = require('mysql2');
+// src/services/api.js
+import axios from 'axios';
 
-const connection = mysql.createConnection(process.env.DATABASE_URL);
-
-connection.connect((err) => {
-  if (err) {
-    console.error('❌ Error al conectar a PlanetScale:', err.message);
-  } else {
-    console.log('✅ Conectado exitosamente a PlanetScale');
-  }
+const api = axios.create({
+  // ✅ Usa variable de entorno en producción, localhost en desarrollo
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+  withCredentials: true, // Necesario para cookies y sesiones entre dominios
 });
 
-module.exports = connection;
+export default api;
