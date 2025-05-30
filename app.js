@@ -13,13 +13,18 @@ const port = process.env.PORT || 5000;
 
 // ✅ Configurar CORS antes de rutas
 const corsOptions = {
-  origin: ['http://localhost:3001', 'http://localhost:3002', 'https://mesa-compras.vercel.app'],
-  credentials: true, // Necesario para enviar cookies / sesiones cruzadas
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Preflight permitido
-  allowedHeaders: ['Content-Type', 'Authorization'] // CORS seguro
+  origin: [
+    'http://localhost:3001',
+    'http://localhost:3002',
+    'https://mesa-compras-frontend.vercel.app' // 👈 este es el correcto
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));
+
 
 // Middleware
 app.use(bodyParser.json());
