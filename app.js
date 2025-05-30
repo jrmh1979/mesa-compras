@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const db = require('./db');
 const importarPedidos = require('./routers/importarPedidos');
@@ -11,7 +10,7 @@ const importarVilniusRoutes = require('./routers/importarVilnius');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ Configurar CORS antes de rutas
+// ✅ Configurar CORS correctamente para Vercel
 const corsOptions = {
   origin: 'https://mesa-compras-frontend.vercel.app',
   credentials: true,
@@ -20,11 +19,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // preflight
+app.options('*', cors(corsOptions)); // ← preflight obligatorio
 
-
-// Middleware
-app.use(bodyParser.json());
+// ✅ Reemplaza bodyParser por express.json()
+app.use(express.json());
 
 // Rutas externas
 app.use(importarPedidos);
